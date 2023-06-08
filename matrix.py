@@ -60,10 +60,6 @@ def norma(x: list[list[float]]) -> float:
     norma_final = norm**0.5
     return norma_final
 
-    # TODO: implementar
-    # a norma de uma matriz [[1, 2, 4], [2, 3, 4]] é 6.928203230275509
-    # ela consiste em calcular a raiz quadrada da soma dos quadrados dos elementos da matriz
-    # caso a matriz esteja vazia deve-se retornar 0
 
 def é_simétrica(x: list[list[float]]) -> bool:
     """Verifica se uma matriz é simétrica"""
