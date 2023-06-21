@@ -61,7 +61,7 @@ def norma(matriz_1: Matriz) -> float:
     return norma_final
 
 
-def e_simetrica(matriz_1: Matriz) -> bool:
+def eh_simetrica(matriz_1: Matriz) -> bool:
     """Verifica se uma matriz é simétrica"""
     if matriz_1 == []:
         return True
