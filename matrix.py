@@ -1,7 +1,9 @@
 """Módulo com as funções de manipulação de matrizes."""
 
+from tipos import Escalar, Matriz
 
-def soma(x: list[list[float]], y: list[list[float]]) -> list[list[float]]:
+
+def soma(x: Matriz, y: Matriz) -> Matriz:
     soma_matrizes = []
     if x == [] and y == []:
         return []
@@ -17,10 +19,9 @@ def soma(x: list[list[float]], y: list[list[float]]) -> list[list[float]]:
             return None
 
 
-
-def multiplicação_por_escalar(matriz: list[list[float]], escalar: float) -> list[list[float]]:
+def multiplicação_por_escalar(matriz: Matriz, escalar: Escalar) -> Matriz:
     """Multiplica uma matriz por um escalar"""
-    result =[]
+    result = []
     for line in matriz:
         newLine = []
         for element in line:
@@ -31,13 +32,13 @@ def multiplicação_por_escalar(matriz: list[list[float]], escalar: float) -> li
     return result
 
 
-def multiplicação(x: list[list[float]], y: list[list[float]]) -> list[list[float]]:
+def multiplicação(x: Matriz, y: Matriz) -> Matriz:
     """Multiplica duas matrizes"""
     if x == []:
-        return x 
+        return x
     if len(x) != len(y[0]):
         return None
-        
+
     else:
         C = [[0 for _ in range(len(y[0]))] for _ in range(len(x[0]))]
         for i in range(len(x)):
@@ -47,14 +48,13 @@ def multiplicação(x: list[list[float]], y: list[list[float]]) -> list[list[flo
         return C
 
 
-
-def norma(x: list[list[float]]) -> float:
+def norma(x: Matriz) -> float:
     """Calcula a norma de uma matriz"""
     l = []
     norm = 0
     for i in x:
         for j in i:
-            q = j*j
+            q = j * j
             l.append(q)
     for number in l:
         norm += number
@@ -62,7 +62,7 @@ def norma(x: list[list[float]]) -> float:
     return norma_final
 
 
-def é_simétrica(x: list[list[float]]) -> bool:
+def é_simétrica(x: Matriz) -> bool:
     """Verifica se uma matriz é simétrica"""
     if x == []:
         return True
@@ -75,7 +75,7 @@ def é_simétrica(x: list[list[float]]) -> bool:
     # a transposta de uma matriz é a matriz que tem as linhas da matriz original como colunas e as colunas da matriz original como linhas
 
 
-def transposta(x: list[list[float]]) -> list[list[float]]:
+def transposta(x: Matriz) -> Matriz:
     """Calcula a transposta de uma matriz"""
     transpst = []
     if x == []:
@@ -86,9 +86,6 @@ def transposta(x: list[list[float]]) -> list[list[float]]:
             transpst[i].append(x[j][i])
 
     return transpst
- 
-
-
 
     #: implementar
     # a transposta de uma matriz [[1, 2, 4], [2, 3, 4]] é [[1, 2], [2, 3], [4, 4]]
