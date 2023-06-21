@@ -3,89 +3,86 @@
 from tipos import Escalar, Matriz
 
 
-def soma(x: Matriz, y: Matriz) -> Matriz:
+def soma(matriz_1: Matriz, matriz_2: Matriz) -> Matriz:
     soma_matrizes = []
-    if x == [] and y == []:
+    if matriz_1 == [] and matriz_2 == []:
         return []
     else:
-        if len(x) == len(y) and len(x[0]) == len(y[0]):
-            for i in range(len(x)):
+        if len(matriz_1) == len(matriz_2) and len(matriz_1[0]) == len(matriz_2[0]):
+            for i, _ in enumerate(matriz_1):
                 soma_matrizes.append([])
-                for j in range(len(x[0])):
-                    somas = x[i][j] + y[i][j]
+                for j, _ in enumerate(matriz_1[0]):
+                    somas = matriz_1[i][j] + matriz_2[i][j]
                     soma_matrizes[i].append(somas)
             return soma_matrizes
         else:
             return None
 
 
-def multiplicação_por_escalar(matriz: Matriz, escalar: Escalar) -> Matriz:
+def multiplicacao_por_escalar(matriz: Matriz, escalar: Escalar) -> Matriz:
     """Multiplica uma matriz por um escalar"""
     result = []
     for line in matriz:
-        newLine = []
+        newline = []
         for element in line:
-            newLine.append(element * escalar)
+            newline.append(element * escalar)
 
-        result.append(newLine)
+        result.append(newline)
 
     return result
 
 
-def multiplicação(x: Matriz, y: Matriz) -> Matriz:
+def multiplicacao(matriz_1: Matriz, matriz_2: Matriz) -> Matriz:
     """Multiplica duas matrizes"""
-    if x == []:
-        return x
-    if len(x) != len(y[0]):
+    if matriz_1 == []:
+        return matriz_1
+    if len(matriz_1) != len(matriz_2[0]):
         return None
-
     else:
-        C = [[0 for _ in range(len(y[0]))] for _ in range(len(x[0]))]
-        for i in range(len(x)):
-            for j in range(len(y[0])):
-                for k in range(len(x[0])):
-                    C[i][j] += x[i][k] * y[k][j]
+        C = [[0 for _ in range(len(matriz_2[0]))] for _ in range(len(matriz_1))]
+        for i in range(len(matriz_1)):
+            for j in range(len(matriz_2[0])):
+                for k in range(len(matriz_1[0])):
+                    C[i][j] += matriz_1[i][k] * matriz_2[k][j]
         return C
 
 
-def norma(x: Matriz) -> float:
+def norma(matriz_1: Matriz) -> float:
     """Calcula a norma de uma matriz"""
-    l = []
+    lista = []
     norm = 0
-    for i in x:
+    for i in matriz_1:
         for j in i:
-            q = j * j
-            l.append(q)
-    for number in l:
+            quociente = j * j
+            lista.append(quociente)
+    for number in lista:
         norm += number
     norma_final = norm**0.5
     return norma_final
 
 
-def é_simétrica(x: Matriz) -> bool:
+def e_simetrica(matriz_1: Matriz) -> bool:
     """Verifica se uma matriz é simétrica"""
-    if x == []:
+    if matriz_1 == []:
         return True
-    if len(x) == len(x[0]) and transposta(x) == x:
+    if len(matriz_1) == len(matriz_1[0]) and transposta(matriz_1) == matriz_1:
         return True
     else:
         return False
     # : implementar
     # uma matriz é simétrica se ela é quadrada e se ela é igual a sua transposta
-    # a transposta de uma matriz é a matriz que tem as linhas da matriz original como colunas e as colunas da matriz original como linhas
 
 
-def transposta(x: Matriz) -> Matriz:
+def transposta(matriz_1: Matriz) -> Matriz:
     """Calcula a transposta de uma matriz"""
-    transpst = []
-    if x == []:
+    transposta_ = []
+    if matriz_1 == []:
         return []
-    for i in range(len(x[0])):
-        transpst.append([])
-        for j in range(len(x)):
-            transpst[i].append(x[j][i])
+    for i, _ in enumerate(matriz_1[0]):
+        transposta_.append([])
+        for j, _ in enumerate(matriz_1):
+            transposta_[i].append(matriz_1[j][i])
 
-    return transpst
-
+    return transposta_
     #: implementar
     # a transposta de uma matriz [[1, 2, 4], [2, 3, 4]] é [[1, 2], [2, 3], [4, 4]]
